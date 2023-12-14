@@ -23,6 +23,15 @@ pipeline {
     }
     
   }
+  post{
+         always{
+               sh 'docker rm -f mypycontainer'
+               sh 'docker run --name mypycontainer -d -p 3000:5000 my-flask'
+               mail to: "suryachandrucs@gmail.com",
+               subject: "Notification from Jenkins",
+               body: "Received mail notifiaction from Jenkins"
+         }
+  }
 
    
 
